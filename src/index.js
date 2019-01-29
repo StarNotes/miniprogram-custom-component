@@ -1,37 +1,38 @@
+/* eslint-disable */
 Component({
-	properties: {
-		dataList: {            // 属性名
-			type: Array,     // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
-			value: []     // 属性初始值（可选），如果未指定则会根据类型选择一个
-		},
-	},
-	data: {
-		isOutLink:false
-	},
-	methods: {
-		// 判断是否是空对象
-		isEmptyObject: function (obj)  {
-			for (let p in obj) {
-				return false;
+  properties: {
+    dataList: {// 属性名
+      type: Array, // 类型（必填），目前接受的类型包括：String, Number, Boolean, Object, Array, null（表示任意类型）
+      value: []// 属性初始值（可选），如果未指定则会根据类型选择一个
+    },
+  },
+  data: {
+    isOutLink: false,
+  },
+  methods: {
+    // 判断是否是空对象
+    isEmptyObject: (obj) => {
+      for (let p in obj) {
+        return false
 			}
-			return true;
+      return true
 		},
 		// 判断是否是函数
-		isFunction: function (fn)  {
+    isFunction: (fn) => {
 			return Object.prototype.toString.call(fn).toLowerCase() === "[object function]";
 		},
 		// 变量控制跳转到外部链接
-		toLink: function(){
-			this.setData({
-				isOutLink:true
+		toLink: () => {
+      this.setData({
+        isOutLink: true
 			})
 		},
 		// 执行参数传入的方法
-		toInnerFunc:function(e){
-			let index = e.currentTarget.dataset.index;
+    toInnerFunc: (e) => {
+      const index = e.currentTarget.dataset.index
 			this.data.dataList[index].func && this.data.dataList[index].func();
 		},
-		getUrl: function(data) {
+		getUrl: (data) => {
 			let url = data.path;
 			if (!this.isEmptyObject(data.params)){
 				url = `${url}?`;
@@ -44,7 +45,7 @@ Component({
 			console.log(url);
 			return url;
 		},
-		tabClick : function (e) {
+		tabClick : (e) => {
 			let data = e.currentTarget.dataset.obj;
 			switch (data.EType) {
 				case 'toPage':// 打开当前小程序页面
