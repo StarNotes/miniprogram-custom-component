@@ -23,12 +23,14 @@ Component({
 		},
 		// 变量控制跳转到外部链接
 		toLink() {
-      this.isOutLink = true;
+      this.setData({
+        isOutLink:true
+      })
 		},
 		// 执行参数传入的方法
     toInnerFunc(e) {
       const index = e.currentTarget.dataset.index
-			this.dataList[index].func && this.dataList[index].func();
+			this.data.dataList[index].func && this.data.dataList[index].func();
 		},
 		getUrl(data) {
 			let url = data.path;
