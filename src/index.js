@@ -22,7 +22,7 @@ Component({
 			return Object.prototype.toString.call(fn).toLowerCase() === "[object function]";
 		},
 		// 变量控制跳转到外部链接
-		toLink: () => {
+		toLink() {
       this.isOutLink = true;
 		},
 		// 执行参数传入的方法
