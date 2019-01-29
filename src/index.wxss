@@ -1,6 +1,5 @@
-@import "./common.wxss";
-@import "./reset.wxss";
-
-.index {
-  color: green;
+/* components/carousel/carousel.wxss */
+.slide-image,.navigator{
+	width: 100%;
+	height: 100%;
 }

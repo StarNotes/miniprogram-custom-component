@@ -1,1 +1,31 @@
-<view class="index other">{{prop}}-{{flag}}</view>
+<!--components/carousel/carousel.wxml-->
+<view>
+	<swiper class='banner-swiper' indicator-dots="true" indicator-color="rgba(255,255,255,0.3)" indicator-active-color="rgba(255,255,255,0.7)"> 
+    <block wx:for="{{dataList}}" wx:key="name" wx:for-index="idx" wx:for-item="item">
+			<!-- 跳转到当前小程序页面 -->
+			<swiper-item wx:if="{{item.EType == 'toPage'}}">
+				<navigator class='navigator' open-type="navigate" url="{{item.path}}">
+					<image src="{{item.imageUrl}}" class="slide-image"/> 
+				</navigator>
+      </swiper-item>
+			<!-- 跳转到其他小程序 -->
+			<swiper-item wx:elif="{{item.EType == 'toMiniprogram'}}">
+				<navigator class='navigator' target="miniProgram" open-type="navigate" app-id="{{item.appid}}" path="{{item.path}}">
+					<image src="{{item.imageUrl}}" class="slide-image"/> 
+				</navigator>
+      </swiper-item>
+			<!-- 跳转到外部链接 -->
+			<swiper-item wx:elif="{{item.EType == 'link'}}">
+				<web-view src="{{item.link}}" wx:if="{{isOutLink}}"></web-view>
+				<image wx:elif="{{!isOutLink}}" src="{{item.imageUrl}}" class="slide-image" bindtap='toLink'/> 
+      </swiper-item>
+			<!-- 执行函数 -->
+			<swiper-item wx:elif="{{item.EType == 'function'}}">
+				<image src="{{item.imageUrl}}" class="slide-image" bindtap='toInnerFunc' data-index="{{idx}}"/> 
+      </swiper-item>
+			<swiper-item wx:else>
+				<image src="{{item.imageUrl}}" class="slide-image"/> 
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
