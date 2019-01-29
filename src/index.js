@@ -11,14 +11,14 @@ Component({
   },
   methods: {
     // 判断是否是空对象
-    isEmptyObject: (obj) => {
+    isEmptyObject(obj) {
       for (let p in obj) {
         return false
 			}
       return true
 		},
 		// 判断是否是函数
-    isFunction: (fn) => {
+    isFunction(fn) {
 			return Object.prototype.toString.call(fn).toLowerCase() === "[object function]";
 		},
 		// 变量控制跳转到外部链接
@@ -26,11 +26,11 @@ Component({
       this.isOutLink = true;
 		},
 		// 执行参数传入的方法
-    toInnerFunc: (e) => {
+    toInnerFunc(e) {
       const index = e.currentTarget.dataset.index
 			this.dataList[index].func && this.dataList[index].func();
 		},
-		getUrl: (data) => {
+		getUrl(data) {
 			let url = data.path;
 			if (!this.isEmptyObject(data.params)){
 				url = `${url}?`;
@@ -43,7 +43,7 @@ Component({
 			console.log(url);
 			return url;
 		},
-		tabClick : (e) => {
+		tabClick(e) {
 			let data = e.currentTarget.dataset.obj;
 			switch (data.EType) {
 				case 'toPage':// 打开当前小程序页面
