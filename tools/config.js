@@ -13,7 +13,6 @@ const dist = path.resolve(__dirname, '../miniprogram_dist')
 
 module.exports = {
   entry: ['pages/index/index'],
-
   isDev,
   isWatch,
   srcPath: src, // 源目录
